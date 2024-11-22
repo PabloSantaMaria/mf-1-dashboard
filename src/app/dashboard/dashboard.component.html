@@ -1,0 +1,66 @@
+<div style="width: 100%;">
+  <h2>Dashboard</h2>
+  <!-- <apx-chart [series]="series" [chart]="chart" [title]="title"></apx-chart> -->
+  <!-- <apx-chart
+    class="h-80 w-full flex-auto"
+    [chart]="
+        chartGithubIssues.chart
+    "
+    [colors]="
+        chartGithubIssues.colors
+    "
+    [dataLabels]="
+        chartGithubIssues.dataLabels
+    "
+    [grid]="chartGithubIssues.grid"
+    [labels]="
+        chartGithubIssues.labels
+    "
+    [legend]="
+        chartGithubIssues.legend
+    "
+    [plotOptions]="
+        chartGithubIssues.plotOptions
+    "
+    [series]="
+        chartGithubIssues.series[
+            githubIssuesWeekSelector
+                .value
+        ]
+    "
+    [states]="
+        chartGithubIssues.states
+    "
+    [stroke]="
+        chartGithubIssues.stroke
+    "
+    [tooltip]="
+        chartGithubIssues.tooltip
+    "
+    [xaxis]="
+        chartGithubIssues.xaxis
+    "
+    [yaxis]="
+        chartGithubIssues.yaxis
+    "
+  ></apx-chart> -->
+  <apx-chart
+    #chart
+    [series]="form.value.series | series : form.value.type"
+    [xaxis]="{ categories: form.value.xaxis }"
+    [chart]="{
+      height: form.value.height,
+      type: form.value.type,
+      zoom: {
+        enabled: false
+      },
+    }"
+    [title]="{ text: form.value.title }"
+    [autoUpdateSeries]="false"
+    (chartReady)="onChartReady($event)"
+  ></apx-chart>
+
+  <div class="">
+    <a href="#">sarasa</a>
+  </div>
+</div>
