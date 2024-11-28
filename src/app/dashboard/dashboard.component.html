@@ -1,50 +1,6 @@
 <div style="width: 100%">
   <div class="dashboard-container">
     <h2>Dashboard</h2>
-    <!-- <apx-chart [series]="series" [chart]="chart" [title]="title"></apx-chart> -->
-    <!-- <apx-chart
-    class="h-80 w-full flex-auto"
-    [chart]="
-        chartGithubIssues.chart
-    "
-    [colors]="
-        chartGithubIssues.colors
-    "
-    [dataLabels]="
-        chartGithubIssues.dataLabels
-    "
-    [grid]="chartGithubIssues.grid"
-    [labels]="
-        chartGithubIssues.labels
-    "
-    [legend]="
-        chartGithubIssues.legend
-    "
-    [plotOptions]="
-        chartGithubIssues.plotOptions
-    "
-    [series]="
-        chartGithubIssues.series[
-            githubIssuesWeekSelector
-                .value
-        ]
-    "
-    [states]="
-        chartGithubIssues.states
-    "
-    [stroke]="
-        chartGithubIssues.stroke
-    "
-    [tooltip]="
-        chartGithubIssues.tooltip
-    "
-    [xaxis]="
-        chartGithubIssues.xaxis
-    "
-    [yaxis]="
-        chartGithubIssues.yaxis
-    "
-  ></apx-chart> -->
     <apx-chart
       #chart
       [series]="form.value?.series | series : form.value.type"
@@ -60,23 +16,24 @@
       [autoUpdateSeries]="false"
       (chartReady)="onChartReady($event)"
     ></apx-chart>
-
+    <h1>This is the user {{ user?.name }}</h1>
     <div class="flex gap-10">
       <div>
         <div class="p-10 border-pink-400 border-2 rounded">
-          <h1 class="text-3xl font-bold underline">
-            Hello Cardinal!
-          </h1>
+          <h1 class="text-3xl font-bold underline">Hello Cardinal!</h1>
         </div>
       </div>
-      <button class="h-12 bg-transparent hover:bg-pink-500 text-pink-700 font-semibold hover:text-white py-2 px-4 border border-pink-500 hover:border-transparent rounded">
+      <button
+        (click)="onClick()"
+        class="h-12 bg-transparent hover:bg-pink-500 text-pink-700 font-semibold hover:text-white py-2 px-4 border border-pink-500 hover:border-transparent rounded"
+      >
         Click
       </button>
     </div>
 
-
     <div class="">
       <a href="#">Anchor</a>
+      <p>{{ accesses }}</p>
     </div>
   </div>
 </div>

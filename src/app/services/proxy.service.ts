@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SharedServiceProxy {
-  private _service: any;
+export class AppService {
+  url = "https://ecm-auth-api-dev.humanage.app/api";
 
-  async getService() {
-    if (!this._service) {
-      const remoteModule = await import('host/SharedService');
-      this._service = new remoteModule.SharedService();
-    }
-    return this._service;
+  private http = inject(HttpClient);
+
+  getAccess(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.url}/AppSwitch/GetAccess`);
   }
 }

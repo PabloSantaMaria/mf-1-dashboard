@@ -6,7 +6,6 @@ module.exports = withModuleFederationPlugin({
 
   exposes: {
     './routes': './src/app/app.routes.ts',
-    './tailwind-styles': './src/styles.css',
   },
 
   shared: {
@@ -16,7 +15,9 @@ module.exports = withModuleFederationPlugin({
     '@angular/forms': { singleton: false, strictVersion: false },
     autoprefixer: { singleton: true, strictVersion: false },
     postcss: { singleton: true, strictVersion: false },
-    tailwindcss: { singleton: true, strictVersion: false }
-  }
+    tailwindcss: { singleton: true, strictVersion: false },
+    'shared': { singleton: true, strictVersion: false, requiredVersion: 'auto' },
+    '@angular/common/http': { singleton: true, strictVersion: false },
+  } 
 
 });

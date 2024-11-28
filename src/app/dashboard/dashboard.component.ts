@@ -1,8 +1,14 @@
-import {CommonModule} from '@angular/common';
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {ChartComponent, NgApexchartsModule,} from 'ng-apexcharts';
-import {UntypedFormArray, UntypedFormControl, UntypedFormGroup,} from '@angular/forms';
-import {SeriesPipe} from './series.pipe';
+import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import { ChartComponent, NgApexchartsModule } from 'ng-apexcharts';
+import {
+  UntypedFormArray,
+  UntypedFormControl,
+  UntypedFormGroup,
+} from '@angular/forms';
+import { SeriesPipe } from './series.pipe';
+import { SharedService } from 'shared';
+import { AppService } from '../services/proxy.service';
 
 @Component({
   standalone: true,
@@ -14,12 +20,16 @@ import {SeriesPipe} from './series.pipe';
 export class DashboardComponent implements OnInit {
   @ViewChild('chart', { static: true }) chart: ChartComponent;
 
-  // private service = inject(SharedServiceProxy).getService();
-
+  private service = inject(AppService);
+  private sharedService = inject(SharedService);
+  user: { name: string; role: string };
+  accesses = '';
   form: UntypedFormGroup;
 
   ngOnInit() {
-    // this.service.then(v => console.log({v}));
+    this.sharedService.user$.subscribe((v) => (this.user = v));
+    this.sharedService.acceses.subscribe((v) => (this.accesses = v));
+    this.service.getAccess().subscribe((s) => console.log({ s }));
 
     this.form = new UntypedFormGroup({
       title: new UntypedFormControl('Basic Chart'),
@@ -44,6 +54,10 @@ export class DashboardComponent implements OnInit {
         new UntypedFormControl('Apr'),
       ]),
     });
+  }
+
+  onClick() {
+    this.sharedService.loadGetAccess();
   }
 
   addValue() {
